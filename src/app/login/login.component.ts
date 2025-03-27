@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ServiceService } from '../service/service.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,15 +10,9 @@ import { ServiceService } from '../service/service.service';
 })
 export class LoginComponent {
 
-  constructor(){}
+  constructor(private route: ActivatedRoute, private router: Router){}
 
-  //backendURL = 'http://127.0.0.1:3000/auth/github'
-  backendURL = 'http://127.0.0.1:3000/teste'
-
-  async loginComGithub() : Promise<JSON> {
-    console.log('chamou')
-    const data = await fetch(this.backendURL)
-    return await data.json();
-
+  async loginComGithub() {
+    window.open('http://127.0.0.1:3000/auth/github', '')
   }
 }

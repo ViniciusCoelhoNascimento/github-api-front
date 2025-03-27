@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RepoListComponent } from './repo-list/repo-list.component';
 import { FavoritesListComponent } from './favorites-list/favorites-list.component';
+import { AuthSuccessComponent } from './auth-success/auth-success.component';
 
 export const routes: Routes = [
     {
@@ -16,5 +17,8 @@ export const routes: Routes = [
         path: 'favorites',
         component: FavoritesListComponent
     },
-    
+    {
+        path: 'auth-success',
+        component: AuthSuccessComponent
+    },
 ];
