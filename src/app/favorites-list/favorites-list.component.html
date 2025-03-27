@@ -1,1 +1,7 @@
-<p>favorites-list works!</p>
+<h1>FAVORITOS ⭐</h1>
+<a class="button" [routerLink]="['/repo-list']">REPOSITÓRIOS</a>
+<ul>
+    <li *ngFor="let repo of repositories">
+        {{repo.name}}
+    </li>
+</ul>

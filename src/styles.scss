@@ -2,7 +2,7 @@ body {
  background-color: black;
 }
 
-p, li{
+h1, h2, p, li{
   color: white;
 }
 
@@ -11,21 +11,21 @@ p, li{
     justify-content: center;
     align-items: center;
     height: 100vh; // Centraliza verticalmente na tela inteira
-  }
+}
   
-  .button {
-    background-color: black;
-    color: white;
-    font-weight: bold;
-    border: 2px solid white;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-  
-    &:hover {
-      background-color: white;
-      color: black;
-    }
+.button {
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  border: 2px solid white;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: white;
+    color: black;
   }
+}
   

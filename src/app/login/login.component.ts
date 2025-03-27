@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { ServiceService } from '../service/service.service';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  constructor(private route: ActivatedRoute, private router: Router){}
+  constructor(){}
 
   async loginComGithub() {
     window.open('http://127.0.0.1:3000/auth/github', '')

@@ -1,8 +1,9 @@
-<p>hello world</p>
-<button (click)="getRepositories()">Buscar Repositorios</button>
+<h1>REPOSITÓRIOS</h1>
+<button class="button" (click)="getRepositories()">Buscar Repositorios</button>
+<a class="button" [routerLink]="['/favorites']">FAVORITOS</a>
 <ul>
     <li *ngFor="let repo of repositories">
         {{repo.name}}
-        <button (click)="favorite(repo.id)">⭐</button>
+        <button (click)="favorite(repo.name)">⭐</button>
     </li>
 </ul>

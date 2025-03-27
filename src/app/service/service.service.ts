@@ -9,6 +9,7 @@ import { Repo } from '../interfaces/repo';
 export class ServiceService {
 
   private apiGetRepos = 'http://localhost:3000/get-repos';
+  private apiGetFavorites = 'http://localhost:3000/repos/favorites';
   private apiPostFavorite = 'http://localhost:3000/repos/favorite';
 
   constructor() {}
@@ -27,16 +28,45 @@ export class ServiceService {
     }
     const repositories = await response.json()
 
-    const repoList: Repo[] = repositories.map((repo: { id: number; name: string })=> ({
-      id: repo.id,
+    const repoList: Repo[] = repositories.map((repo: { name: string })=> ({
       name: repo.name
     }));
-
-    //console.log('repo list: ' + repoList[0].id + repoList[0].name)
-
     return repoList;
   }
-  async postFavorite(idRepos: number){
 
+  async getFavorites() : Promise<Repo[]> {
+    const JWTtoken = localStorage.getItem('JWTtoken')
+    const response = await fetch(this.apiGetFavorites, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${JWTtoken}`,
+        'Content-Type': 'application/json'
+      }
+    });
+    if(!response.ok){
+      throw new Error(`Erro ao buscar favoritos: ${response.status}`);
+    }
+    const repositories = await response.json()
+    const repoList: Repo[] = repositories.map((repo: { name: string })=> ({
+      name: repo.name
+    }));
+    return repoList;
+    //return repositories.map((repo: { name: string }) => repo.name);
+  }
+
+  async postFavorite(name: string){
+    const JWTtoken = localStorage.getItem('JWTtoken');
+    const response = await fetch(this.apiPostFavorite, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${JWTtoken}`,
+        'Content-Type': 'application/json'
+      },
+      body: name ? JSON.stringify({repo_name: name}) : null
+    });
+
+    if(!response.ok){
+      throw new Error(`Erro ao favoritar: ${response.status}`);
+    }
   }
 }
