@@ -1,5 +1,5 @@
 <h1>REPOSITÓRIOS</h1>
-<button class="button" (click)="getRepositories()">Buscar Repositorios</button>
+<a class="button" [routerLink]="['/create-repo']">NOVO REPOSITÓRIO</a>
 <a class="button" [routerLink]="['/favorites']">FAVORITOS</a>
 <ul>
     <li *ngFor="let repo of repositories">

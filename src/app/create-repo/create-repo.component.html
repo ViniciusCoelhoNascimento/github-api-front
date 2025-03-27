@@ -1,1 +1,8 @@
-<p>create-repo works!</p>
+<h1>NOVO REPOSITÓRIO</h1>
+<a class="button" [routerLink]="['/repo-list']">VOLTAR</a>
+    <form [formGroup]="applyForm" id="name" formControlName="name" (submit)="submitRepo()">
+            <label>Nome do repositório:</label>
+            <input type="text" for="name" placeholder="Nome do repositório" required><br>
+            <button class="button" type="submit">Criar Repositório</button>
+
+    </form>

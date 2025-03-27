@@ -11,6 +11,7 @@ export class ServiceService {
   private apiGetRepos = 'http://localhost:3000/get-repos';
   private apiGetFavorites = 'http://localhost:3000/repos/favorites';
   private apiPostFavorite = 'http://localhost:3000/repos/favorite';
+  private apiPostNewRep = 'http://localhost:3000/repos';
 
   constructor() {}
 
@@ -67,6 +68,22 @@ export class ServiceService {
 
     if(!response.ok){
       throw new Error(`Erro ao favoritar: ${response.status}`);
+    }
+  }
+
+  async postNewRepo(name: string){
+    const JWTtoken = localStorage.getItem('JWTtoken');
+    const response = await fetch(this.apiPostNewRep, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${JWTtoken}`,
+        'Content-Type': 'application/json'
+      },
+      body: name ? JSON.stringify({name: name}) : null
+    });
+
+    if(!response.ok){
+      throw new Error(`Erro ao criar um novo repositório: ${response.status}`);
     }
   }
 }
