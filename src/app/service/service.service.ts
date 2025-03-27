@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Repo } from '../interfaces/repo';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class ServiceService {
 
   constructor() {}
 
-  async getRepositories() : Promise<JSON> {
+  async getRepositories() : Promise<Repo[]> {
     const JWTtoken = localStorage.getItem('JWTtoken')
     const response = await fetch(this.apiGetRepos, {
       method: 'GET',
@@ -24,7 +25,18 @@ export class ServiceService {
     if(!response.ok){
       throw new Error(`Erro ao buscar repositorios: ${response.status}`);
     }
+    const repositories = await response.json()
 
-    return await response.json();
+    const repoList: Repo[] = repositories.map((repo: { id: number; name: string })=> ({
+      id: repo.id,
+      name: repo.name
+    }));
+
+    //console.log('repo list: ' + repoList[0].id + repoList[0].name)
+
+    return repoList;
+  }
+  async postFavorite(idRepos: number){
+
   }
 }

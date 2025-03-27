@@ -1,7 +1,8 @@
 <p>hello world</p>
 <button (click)="getRepositories()">Buscar Repositorios</button>
 <ul>
-    <li * ngFor="let item of items">
-        
+    <li *ngFor="let repo of repositories">
+        {{repo.name}}
+        <button (click)="favorite(repo.id)">⭐</button>
     </li>
 </ul>
